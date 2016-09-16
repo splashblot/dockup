@@ -1,7 +1,13 @@
-FROM ubuntu:trusty
-MAINTAINER Simon Templer <simon@wetransform.to>
+FROM alpine:edge
+MAINTAINER Simon Templer <simon@wetransform.to> Ivan Lisenkov <ivan@ivlis.com>
 
-RUN apt-get update && apt-get install -y python-pip curl && pip install awscli
+# RUN echo '@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories  && \
+#     apk add --update --no-cache curl awscli@testing bash grep
+# RUN apt-get update && apt-get install -y python-pip curl && pip install awscli
+
+RUN apk add --update --no-cache curl bash grep python3 py3-pip ca-certificates tzdata tar && \
+    pip3 install awscli
+
 
 ADD /scripts /dockup/
 RUN chmod 755 /dockup/*.sh
