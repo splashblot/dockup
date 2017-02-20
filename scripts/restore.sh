@@ -34,7 +34,7 @@ fi
 
 # Extract backup
 echo "Extracting backup archive $LAST_BACKUP..."
-tar xzf $LAST_BACKUP -C / $RESTORE_TAR_OPTION
+tar xvzf $LAST_BACKUP -C / $RESTORE_TAR_OPTION
 rc=$?
 
 rm $LAST_BACKUP
