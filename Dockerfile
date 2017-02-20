@@ -1,7 +1,7 @@
 FROM ubuntu:xenial
 MAINTAINER Simon Templer <simon@wetransform.to>
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y python-pip curl && pip install awscli
+RUN apt-get update && apt-get upgrade -y && apt-get install -y python-pip curl cron && pip install awscli
 
 ADD /scripts /dockup/
 RUN chmod 755 /dockup/*.sh
