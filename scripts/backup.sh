@@ -1,6 +1,9 @@
 #!/bin/bash
 export PATH=$PATH:/usr/bin:/usr/local/bin:/bin
 
+set -x
+
+
 source ./notifications.sh
 
 script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"

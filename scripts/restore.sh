@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 . $script_path/paths_from_volumes.sh
