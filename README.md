@@ -104,6 +104,11 @@ For restoring an encrypted file, the following environment variables need to be 
 * **GPG_SECRING** - the location of the secret keyring containing the private key you need for decryption
 * **GPG_PASSPHRASE** - the passphrase needed to access the private key
 
+## Use AWS IAM Service Task Role
+
+Instead of setup AWS key, secret you can use IAM role. 
+
+* **AWS_USE_SERVICE_TASK_ROLE** - Use IAM role instead of AWS keys (defaults to false)
 
 ## Notifications
 
