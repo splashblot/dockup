@@ -5,8 +5,6 @@ if [[ "$AWS_USE_SERVICE_TASK_ROLE" == "true" ]]; then
   unset AWS_SECRET_ACCESS_KEY
 fi
 
-env
-
 if [[ "$RESTORE" == "true" ]]; then
   ./restore.sh
 else
