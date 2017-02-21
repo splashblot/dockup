@@ -110,6 +110,12 @@ Instead of setup AWS key, secret you can use IAM role.
 
 * **AWS_USE_SERVICE_TASK_ROLE** - Use IAM role instead of AWS keys (defaults to false)
 
+## Backup only the content of the path (not the directory structure)
+
+Can be used only when there is only one PATH to backup
+
+* **CONTENT_ONLY** - Backup the content without the directory structure
+
 ## Notifications
 
 To enable notifications for backups you can use the following environment variables:

@@ -3,6 +3,8 @@ export PATH=$PATH:/usr/bin:/usr/local/bin:/bin
 
 source ./notifications.sh
 
+script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 function cleanup {
   # If a post-backup command is defined (eg: for cleanup)
   if [ -n "$AFTER_BACKUP_CMD" ]; then
@@ -16,7 +18,7 @@ echo "[$start_time] Initiating backup $BACKUP_NAME..."
 
 # Get timestamp
 : ${BACKUP_SUFFIX:=.$(date +"%Y-%m-%d-%H-%M-%S")}
-tarball=$BACKUP_NAME$BACKUP_SUFFIX.tar.gz
+tarball=$script_path$BACKUP_NAME$BACKUP_SUFFIX.tar.gz
 
 # If a pre-backup command is defined, run it before creating the tarball
 if [ -n "$BEFORE_BACKUP_CMD" ]; then
@@ -58,7 +60,13 @@ fi
 tar_try=0
 until [ $tar_try -ge $BACKUP_TAR_TRIES ]
 do
-  time tar czf $tarball $BACKUP_TAR_OPTION $PATHS_TO_BACKUP
+  if [ "$CONTENT_ONLY" == "true" ]; then
+   cd $PATHS_TO_BACKUP
+   time tar czf $tarball $BACKUP_TAR_OPTION .
+  else
+   time tar czf $tarball $BACKUP_TAR_OPTION $PATHS_TO_BACKUP
+  fi
+
   rc=$?
   if [ $rc -eq 0 ]; then
     echo "Created archive $tarball"
