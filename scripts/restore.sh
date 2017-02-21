@@ -40,7 +40,8 @@ fi
 echo "Extracting backup archive $LAST_BACKUP..."
 if [ "$CONTENT_ONLY" == "true" ]; then
     cd $PATHS_TO_BACKUP
-    time tar czf $tarball $BACKUP_TAR_OPTION .
+    time tar xvzf $script_path/$LAST_BACKUP $RESTORE_TAR_OPTION .
+    cd $WORKDIR
 else
     tar xvzf $LAST_BACKUP -C / $RESTORE_TAR_OPTION
 fi

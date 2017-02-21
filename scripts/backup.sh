@@ -40,6 +40,7 @@ do
   if [ "$CONTENT_ONLY" == "true" ]; then
    cd $PATHS_TO_BACKUP
    time tar czf $tarball $BACKUP_TAR_OPTION .
+   cd $WORKDIR
   else
    time tar czf $tarball $BACKUP_TAR_OPTION $PATHS_TO_BACKUP
   fi
