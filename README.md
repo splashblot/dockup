@@ -116,6 +116,13 @@ Can be used only when there is only one PATH to backup
 
 * **CONTENT_ONLY** - Backup the content without the directory structure
 
+## Set user id and group id of data restored ##
+
+A recursive chown will be applied with these options.
+
+* **USER_ID**
+* **GROUP_ID**
+
 ## Notifications
 
 To enable notifications for backups you can use the following environment variables:
