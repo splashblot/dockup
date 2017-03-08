@@ -44,7 +44,7 @@ if [ "$CONTENT_ONLY" == "true" ]; then
     cd $PATHS_TO_BACKUP
     time tar xvzf $script_path/$LAST_BACKUP $RESTORE_TAR_OPTION .
     if [ -n "$USER_ID" ]; then
-       chown -R ${USER_ID}:#{GROUP_ID} .
+       chown -R $USER_ID:$GROUP_ID .
        chmod -R 664 .
     fi
 
