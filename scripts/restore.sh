@@ -45,7 +45,7 @@ if [ "$CONTENT_ONLY" == "true" ]; then
     time tar xvzf $script_path/$LAST_BACKUP $RESTORE_TAR_OPTION .
     if [ -n "$USER_ID" ]; then
        chown -R $USER_ID:$GROUP_ID .
-       chmod -R 664 .
+       chmod -R 774 .
     fi
 
     cd $WORKDIR
