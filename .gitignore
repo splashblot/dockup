@@ -3,3 +3,4 @@ test-env.txt
 tmp*.txt
 *.pub
 *.sec
+.idea/

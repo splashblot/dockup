@@ -104,6 +104,24 @@ For restoring an encrypted file, the following environment variables need to be 
 * **GPG_SECRING** - the location of the secret keyring containing the private key you need for decryption
 * **GPG_PASSPHRASE** - the passphrase needed to access the private key
 
+## Use AWS IAM Service Task Role
+
+Instead of setup AWS key, secret you can use IAM role. 
+
+* **AWS_USE_SERVICE_TASK_ROLE** - Use IAM role instead of AWS keys (defaults to false)
+
+## Backup only the content of the path (not the directory structure)
+
+Can be used only when there is only one PATH to backup
+
+* **CONTENT_ONLY** - Backup the content without the directory structure
+
+## Set user id and group id of data restored ##
+
+A recursive chown will be applied with these options.
+
+* **USER_ID**
+* **GROUP_ID**
 
 ## Notifications
 

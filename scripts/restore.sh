@@ -1,5 +1,11 @@
 #!/bin/bash
 
+set -x
+
+script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+. $script_path/paths_from_volumes.sh
+
 if [ ! -n "${LAST_BACKUP}" ]; then
   # Find last backup file
   : ${LAST_BACKUP:=$(aws s3 --region $AWS_DEFAULT_REGION ls s3://$S3_BUCKET_NAME/$S3_FOLDER | awk -F " " '{print $4}' | grep ^$BACKUP_NAME | sort -r | head -n1)}
@@ -34,7 +40,18 @@ fi
 
 # Extract backup
 echo "Extracting backup archive $LAST_BACKUP..."
-tar xzf $LAST_BACKUP -C / $RESTORE_TAR_OPTION
+if [ "$CONTENT_ONLY" == "true" ]; then
+    cd $PATHS_TO_BACKUP
+    time tar xvzf $script_path/$LAST_BACKUP $RESTORE_TAR_OPTION .
+    if [ -n "$USER_ID" ]; then
+       chown -R $USER_ID:$GROUP_ID .
+       chmod -R 774 .
+    fi
+
+    cd $WORKDIR
+else
+    tar xvzf $LAST_BACKUP -C / $RESTORE_TAR_OPTION
+fi
 rc=$?
 
 rm $LAST_BACKUP
