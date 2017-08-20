@@ -21,7 +21,7 @@ else
     echo "${CRON_TIME} cd /dockup && . ./env.conf && ./backup.sh >> $LOGFIFO 2>&1" > crontab.conf
     crontab ./crontab.conf
     echo "=> Running dockup backups as a cronjob for ${CRON_TIME}"
-    cron
+    crond
     tail -n +0 -f "$LOGFIFO"
   else
     ./backup.sh
