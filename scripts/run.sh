@@ -1,8 +1,8 @@
 #!/bin/bash
 
-set -x
-
 source env_secrets_expand.sh
+
+set -x
 
 if [[ "$AWS_USE_SERVICE_TASK_ROLE" == "true" ]]; then
   unset AWS_ACCESS_KEY_ID
